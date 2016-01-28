@@ -2,16 +2,32 @@
 greenhat is a quick hack for decorating your GitHub contribution calendar with commits for the past `n` days. It uses the `GIT_AUTHOR_DATE` and `GIT_COMMITTER_DATE` environmental variables to make commits appear in the past. Be warned that greenhat will clobber your repository's commit history.
 
 ### How to Use
-Place `greenhat.py` in your Git repository. Make sure your [remote repository URL is set](https://help.github.com/articles/adding-a-remote/), and that you have a [public SSH key set up](https://help.github.com/articles/generating-ssh-keys/). Then run the script with the python interpreter, with an integer specifying `n` number of days before today to generate commits for. E.g.,
+Place `greenhat.py` in your Git repository. Make sure your [remote repository URL is set](https://help.github.com/articles/adding-a-remote/), and that you have a [public SSH key set up](https://help.github.com/articles/generating-ssh-keys/). Then run the script with the python interpreter, with an integer specifying `days` number of days before today to generate commits for. E.g.,
 
-	python greenhat.py <n>
+	python greenhat.py --days <DAYS>
 
 It might take a while to generate all the commits. If greenhat stops before it finishes, you can resume where you last left off by specifying a date before today when you want it to resume, like so:
 
-	python greenhat.py <n> <date>
+	python greenhat.py --days <DAYS> --date <DATE>
 
-`n` is the remaining days you want to generate commits for, and `date` is a date string in the form `yyyy-mm-dd`  (e.g., 2013-04-05).
+`days` is the remaining days you want to generate commits for, and `date` is a date string in the form `yyyy-mm-dd`  (e.g., 2013-04-05).
 
+Usage
+=====
+```sh
+
+usage: greenhat.py [-h] [-dy DAYS] [-da DATE]
+
+Quick hack for making real work happen.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -dy DAYS, --days DAYS
+                        Number of days before to generate commits
+  -da DATE, --date DATE
+                        Specify a date(Default: Today)
+
+```
 #### An Example
 
 The following calendar is the result of running `python greenhat.py 365`:
